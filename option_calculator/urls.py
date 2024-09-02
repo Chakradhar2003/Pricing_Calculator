@@ -26,8 +26,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', home_view),
     path('', home_view),
-    path('two-steps/', two_step),
-    path('n-steps/', n_step),
-    path('black-scholes/', black_scholes),
+    path('two%20steps/', two_step),
+    path('n%20steps/', n_step),
+    path('black%20scholes/', black_scholes),
     path('about/', about),
 ]

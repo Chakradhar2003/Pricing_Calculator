@@ -21,9 +21,25 @@ from cal.views import black_scholes
 from cal.views import home_view
 from cal.views import about
 from django.http import HttpResponseRedirect
+from django.urls import path, re_path
+from django.http import HttpResponseRedirect
+from django.contrib import admin
+from cal.views import two_step, n_step, black_scholes, home_view, about
 
-def redirect_two_steps(request):
-    return HttpResponseRedirect('/two-steps/')
+
+def redirect_to_last_segment(request, segment):
+    if segment == 'home':
+        return home_view(request)
+    elif segment == 'two-steps':
+        return two_step(request)
+    elif segment == 'n-steps':
+        return n_step(request)
+    elif segment == 'black-scholes':
+        return black_scholes(request)
+    elif segment == 'about':
+        return about(request)
+    else:
+        return HttpResponseRedirect('/')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,12 +49,5 @@ urlpatterns = [
     path('n-steps/', n_step),
     path('black-scholes/', black_scholes),
     path('about/', about),
-    path('home/n-steps/', n_step),
-    path('home/black-scholes/', black_scholes),
-    path('home/two-steps/', two_step),
-    path('home/about/', about),
-    path('black-scholes/home/', home_view),
-    path('two-steps/home/', home_view),
-    path('n-steps/home/', home_view),
-    path('two%2520steps/', redirect_two_steps),  # Redirect double-encoded URL to correct URL
+    re_path(r'.*/(?P<segment>[^/]+)/$', redirect_to_last_segment),  # Dynamic URL handler
 ]

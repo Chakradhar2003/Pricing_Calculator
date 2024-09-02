@@ -33,5 +33,12 @@ urlpatterns = [
     path('n-steps/', n_step),
     path('black-scholes/', black_scholes),
     path('about/', about),
+    path('home/n-steps/', n_step),
+    path('home/black-scholes/', black_scholes),
+    path('home/two-steps/', two_step),
+    path('home/about/', about),
+    path('black-scholes/home/', home_view),
+    path('two-steps/home/', home_view),
+    path('n-steps/home/', home_view),
     path('two%2520steps/', redirect_two_steps),  # Redirect double-encoded URL to correct URL
 ]

@@ -24,10 +24,10 @@ from cal.views import about
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home', home_view),
+    path('home/', home_view),
     path('', home_view),
-    path('two steps', two_step),
-    path('n steps', n_step),
-    path('black scholes', black_scholes),
-    path('about', about),
+    path('two-steps/', two_step),
+    path('n-steps/', n_step),
+    path('black-scholes/', black_scholes),
+    path('about/', about),
 ]

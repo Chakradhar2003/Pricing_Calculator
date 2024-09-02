@@ -20,14 +20,18 @@ from cal.views import n_step
 from cal.views import black_scholes
 from cal.views import home_view
 from cal.views import about
+from django.http import HttpResponseRedirect
 
+def redirect_two_steps(request):
+    return HttpResponseRedirect('/two-steps/')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', home_view),
     path('', home_view),
-    path('two-steps/', two_step),            # Replaced %20 with a hyphen
-    path('n-steps/', n_step),                # Replaced %20 with a hyphen
-    path('black-scholes/', black_scholes),   # Replaced %20 with a hyphen
+    path('two-steps/', two_step),
+    path('n-steps/', n_step),
+    path('black-scholes/', black_scholes),
     path('about/', about),
+    path('two%2520steps/', redirect_two_steps),  # Redirect double-encoded URL to correct URL
 ]
